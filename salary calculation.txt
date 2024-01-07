@@ -1,4 +1,3 @@
---emek haqqinin hesablanmasi-task
 
 set serveroutput on;
 
