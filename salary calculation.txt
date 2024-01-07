@@ -1,0 +1,116 @@
+--emek haqqinin hesablanmasi-task
+
+set serveroutput on;
+
+declare
+    sektor varchar2(30):='&Sektor';
+    gross number:='&Əmək_haqqı';
+    Hemkarlar_teskilatina_uzvluk_haqqi number:='&Həmkarlar';
+    Gelir_vergisi number;
+    DSMF_ayirmalari number;
+    Issizlikden_sigorta_haqqi number;
+    Icbari_tibbi_sigorta_haqqi number;
+    NETT number;
+begin
+        dbms_output.put_line('Gross'||'='||gross);
+if sektor='1' then
+        dbms_output.put_line('Qeyri neft-qaz ve ozel sektor');
+if gross<200 then
+    Gelir_vergisi:=gross*0;
+    DSMF_ayirmalari:=gross*0.03;
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=gross*0.02;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+elsif gross between 200 and 8000 then
+    Gelir_vergisi:=gross*0;
+    DSMF_ayirmalari:=(200*0.03)+((gross-200)*0.1);
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=gross*0.02;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+elsif gross>8000 then
+    Gelir_vergisi:=(gross-8000)*0.14;
+    DSMF_ayirmalari:=(200*0.03)+((gross-200)*0.1);
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=(8000*0.02)+((gross-8000)*0.005);
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+end if;
+end if;
+if sektor='2' then
+        dbms_output.put_line('Dovlet neft-qaz sektoru');
+if gross<200 then
+    Gelir_vergisi:=gross*0;
+    DSMF_ayirmalari:=gross*0.03;
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=gross*0.02;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+elsif gross between 200 and 2500 then
+    Gelir_vergisi:=(gross-200)*0.14;
+    DSMF_ayirmalari:=gross*0.03;
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=gross*0.02;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+elsif gross between 2500 and 8000 then
+    Gelir_vergisi:=(2500*0.14)+(gross-2500)*0.25;
+    DSMF_ayirmalari:=(gross*0.03);
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=gross*0.02;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+elsif gross>8000 then
+    Gelir_vergisi:=(2500*0.14)+(gross-2500)*0.25;
+    DSMF_ayirmalari:=(gross*0.03);
+    Issizlikden_sigorta_haqqi:=gross*0.005;
+    Icbari_tibbi_sigorta_haqqi:=(8000*0.02)+(gross-8000)*0.005;
+    Hemkarlar_teskilatina_uzvluk_haqqi:=gross*Hemkarlar_teskilatina_uzvluk_haqqi/100;
+    NETT:=gross-(Gelir_vergisi+DSMF_ayirmalari+Issizlikden_sigorta_haqqi+Icbari_tibbi_sigorta_haqqi+Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('Gelir vergisi'||': '||'-'||Gelir_vergisi);
+        dbms_output.put_line('DSMF ayirmalari'||': '||'-'||DSMF_ayirmalari);
+        dbms_output.put_line('Issizlikden sigorta haqqi'||': '||'-'||Issizlikden_sigorta_haqqi);
+        dbms_output.put_line('Icbari tibbi sigorta haqqi'||': '||'-'||Icbari_tibbi_sigorta_haqqi);
+        dbms_output.put_line('Hemkarlar teskilatina uzvluk haqqi'||': '||'-'||Hemkarlar_teskilatina_uzvluk_haqqi);
+        dbms_output.put_line('NETT'||'='||NETT);
+end if;
+end if;
+end;
+/
